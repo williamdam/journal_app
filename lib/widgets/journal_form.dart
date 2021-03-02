@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 import '../model/form_data_dto.dart';
+
+const DB_SCHEMA_PATH = 'assets/schema.txt';
+const DB_INSERT_PATH = 'assets/insert.txt';
 
 class JournalForm extends StatelessWidget {
 
@@ -88,6 +92,9 @@ class JournalForm extends StatelessWidget {
                 child: Text('Save'),
                 onPressed: () async {
 
+                  String dbSchema = await rootBundle.loadString(DB_SCHEMA_PATH);
+                  String dbInsert = await rootBundle.loadString(DB_INSERT_PATH);
+
                   if (formKey.currentState.validate()) {
                     formKey.currentState.save();
 
@@ -96,13 +103,11 @@ class JournalForm extends StatelessWidget {
 
                     final Database database = await openDatabase(
                       'journal.db', version: 1, onCreate: (Database db, int version) async {
-                        await db.execute(
-                          'CREATE TABLE IF NOT EXISTS journal_entries(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, date TEXT, rating INT)'
-                        );
+                        await db.execute(dbSchema);
                       }
                     );
                     await database.transaction( (txn) async {
-                      await txn.rawInsert('INSERT INTO journal_entries(title, body, date, rating) VALUES(?, ?, ?, ?)',
+                      await txn.rawInsert(dbInsert,
                       [formData.title, formData.body, formData.date, formData.rating]);
                     });
 
