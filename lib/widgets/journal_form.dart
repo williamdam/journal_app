@@ -99,7 +99,7 @@ class JournalForm extends StatelessWidget {
                     formKey.currentState.save();
 
                     // REMOVE BEFORE DEPLOYMENT!!!
-                    //await deleteDatabase('journal.db');
+                    await deleteDatabase('journal.db');
 
                     final Database database = await openDatabase(
                       'journal.db', version: 1, onCreate: (Database db, int version) async {

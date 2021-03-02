@@ -15,7 +15,7 @@ class ViewDetails extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -24,9 +24,10 @@ class ViewDetails extends StatelessWidget {
                   Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                 ],
               ),
+              SizedBox(height: 10),
               Row(
                 children: [
-                  Text(body, style: TextStyle(fontSize: 16)),
+                  Expanded(child: Text(body, style: TextStyle(fontSize: 16))),
                 ],
               ),
             ],

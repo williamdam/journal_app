@@ -35,18 +35,8 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    if (darkMode == true) {
-      return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          brightness: Brightness.dark,
-        ),
-        routes: routes,
-      );
-    } else {
-      return MaterialApp(
+
+    return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -55,7 +45,6 @@ class _AppState extends State<App> {
         ),
         routes: routes,
       );
-    }
     
   }
 }
