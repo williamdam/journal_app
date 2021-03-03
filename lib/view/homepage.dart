@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:journal_app/view/view_details.dart';
 import 'package:journal_app/widgets/journal_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'add_entry.dart';
 import '../model/form_data_dto.dart';
+import '../widgets/journal_details.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -127,7 +129,7 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        body: JournalList(journalItems: journalItems,),
+        body: JournalList(journalItems: journalItems),
         floatingActionButton: FloatingActionButton(
           //onPressed: () { Navigator.of(context).pushNamed(AddEntry.routeName);},
           onPressed: () { navigateSecondPage(); },
