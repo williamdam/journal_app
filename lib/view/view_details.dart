@@ -8,10 +8,11 @@ import '../widgets/journal_details.dart';
 
 class ViewDetails extends StatelessWidget {
 
-  const ViewDetails({Key key, this.date, this.title, this.body}) : super(key: key);
+  const ViewDetails({Key key, this.date, this.title, this.body, this.rating}) : super(key: key);
   final String date;
   final String title;
   final String body;
+  final int rating;
 
 //////////////////////////////////////////////////////////////////////
 // Description: Full page view of journal entry details for one entry
@@ -25,7 +26,7 @@ class ViewDetails extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: JournalDetails(date: date, title: title, body: body)
+          child: JournalDetails(date: date, title: title, body: body, rating: rating)
         ),
       ),
     );

@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       }
     );
     // Generate list of map objects, for each row.  
-    List<Map> journalRecords = await database.rawQuery(DB_SELECT_PATH);
+    List<Map> journalRecords = await database.rawQuery('SELECT * FROM journal_entries');
 
     // Map the list to list of FormData objects
     List<FormData> journalEntries = journalRecords.map( (record) {

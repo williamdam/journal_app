@@ -39,6 +39,7 @@ class _JournalListState extends State<JournalList> {
                   title: widget.journalItems[i].title, 
                   body: widget.journalItems[i].body, 
                   date: widget.journalItems[i].date,
+                  rating: widget.journalItems[i].rating,
                 )
               )
             ); 
@@ -57,7 +58,8 @@ class _JournalListState extends State<JournalList> {
     return JournalDetails(
       date: widget.journalItems[i].date, 
       title: widget.journalItems[i].title, 
-      body: widget.journalItems[i].body
+      body: widget.journalItems[i].body,
+      rating: widget.journalItems[i].rating
     );
   }
 
@@ -103,16 +105,7 @@ class _JournalListState extends State<JournalList> {
 //////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
-    if (widget.journalItems == null) {
-      return Center(
-        child: Column(
-          children: [
-            CircularProgressIndicator(),
-          ],
-        ),
-      );
-    } 
-    else if (widget.journalItems.length == 0) {
+    if (widget.journalItems == null || widget.journalItems.length == 0) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

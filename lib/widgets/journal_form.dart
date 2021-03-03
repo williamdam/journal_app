@@ -139,6 +139,9 @@ class JournalForm extends StatelessWidget {
                       [formData.title, formData.body, formData.date, formData.rating]);
                     });
 
+                    // Deletes database after form submission for development
+                    // await deleteDatabase('journal.db');
+
                     // Database will close automatically when app quits
                     //await database.close();
 
