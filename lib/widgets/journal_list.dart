@@ -19,12 +19,23 @@ class _JournalListState extends State<JournalList> {
       return Center(
         child: Column(
           children: [
-            Icon(Icons.book),
+            CircularProgressIndicator(),
+          ],
+        ),
+      );
+    } 
+    else if (widget.journalItems.length == 0) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.book, size: 80,),
             Text('Welcome to your journal'),
           ],
         ),
       );
-    } else {
+    }
+    else {
       return ListView.builder(
       itemCount: widget.journalItems.length,
       itemBuilder: (context, i) {

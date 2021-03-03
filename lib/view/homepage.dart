@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-      return MaterialApp(
+    return MaterialApp(
       theme: darkMode ? _darkTheme : _lightTheme,
       title: 'Journal App',
       home: Scaffold(

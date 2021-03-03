@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/journal_details.dart';
 
 class ViewDetails extends StatelessWidget {
 
@@ -16,22 +17,7 @@ class ViewDetails extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(child: Text(body, style: TextStyle(fontSize: 16))),
-                ],
-              ),
-            ],
-          ),
+          child: JournalDetails(date: date, title: title, body: body)
         ),
       ),
     );
