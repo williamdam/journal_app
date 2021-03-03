@@ -24,7 +24,6 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-
 //////////////////////////////////////////////////////////////////////
 // Description: Displays list of journal entries, adaptive to device
 // orientation. Communicates with SQLite database.

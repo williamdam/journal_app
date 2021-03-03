@@ -13,6 +13,9 @@ class ViewDetails extends StatelessWidget {
   final String title;
   final String body;
 
+//////////////////////////////////////////////////////////////////////
+// Description: Full page view of journal entry details for one entry
+//////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(

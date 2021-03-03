@@ -1,4 +1,3 @@
-
 //////////////////////////////////////////////////////////////////////
 // Author: William Dam
 // Date: 03-01-2021
@@ -19,8 +18,14 @@ class JournalList extends StatefulWidget {
   _JournalListState createState() => _JournalListState();
 }
 
+//////////////////////////////////////////////////////////////////////
+// Description: Adaptive layout of journal entries
+//////////////////////////////////////////////////////////////////////
 class _JournalListState extends State<JournalList> {
 
+  //////////////////////////////////////////////////////////////////////
+  // Description: Returns widget of one column layout
+  //////////////////////////////////////////////////////////////////////
   Widget oneColumnLayout() {
     return ListView.builder(
       itemCount: widget.journalItems.length,
@@ -45,6 +50,9 @@ class _JournalListState extends State<JournalList> {
     );
   }
 
+  //////////////////////////////////////////////////////////////////////
+  // Description: Instantiate object of journal details
+  //////////////////////////////////////////////////////////////////////
   Widget details(BuildContext context, i) {
     return JournalDetails(
       date: widget.journalItems[i].date, 
@@ -53,10 +61,13 @@ class _JournalListState extends State<JournalList> {
     );
   }
 
+  // Default value for right column in twoColumnLayout
   Widget rightSide = Text('Click on a journal entry to see details.');
 
+  //////////////////////////////////////////////////////////////////////
+  // Description: Returns widget of two column layout
+  //////////////////////////////////////////////////////////////////////
   Widget twoColumnLayout(BuildContext context) {
-
     return Row(
       children: [
         Expanded(
@@ -86,6 +97,10 @@ class _JournalListState extends State<JournalList> {
 
   }
 
+//////////////////////////////////////////////////////////////////////
+// Description: Build widget displays one column or two column layout
+// based on available space.
+//////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     if (widget.journalItems == null) {
