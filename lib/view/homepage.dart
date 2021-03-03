@@ -100,11 +100,17 @@ class _HomePageState extends State<HomePage> {
     
   }
 
+  // Define light and dark modes
   ThemeData _lightTheme = ThemeData(brightness: Brightness.light);
   ThemeData _darkTheme = ThemeData(brightness: Brightness.dark);
 
+  // Global key for form
   GlobalKey<ScaffoldState> _key = GlobalKey();
 
+  //////////////////////////////////////////////////////////////////////
+  // Description: Show list of entries by date. Adaptive layout 
+  // on device rotation.  Drawer widget updates dark mode.
+  //////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -149,7 +155,6 @@ class _HomePageState extends State<HomePage> {
         ),
         body: JournalList(journalItems: journalItems),
         floatingActionButton: FloatingActionButton(
-          //onPressed: () { Navigator.of(context).pushNamed(AddEntry.routeName);},
           onPressed: () { newEntryPage(); },
           tooltip: 'Add Entry',
           child: Icon(Icons.add),
