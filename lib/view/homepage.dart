@@ -1,12 +1,20 @@
+//////////////////////////////////////////////////////////////////////
+// Author: William Dam
+// Date: 03-01-2021
+// Description: Home page shows list of journal entries, or icon
+// if no entries have been made.
+//////////////////////////////////////////////////////////////////////
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:journal_app/view/view_details.dart';
 import 'package:journal_app/widgets/journal_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'add_entry.dart';
 import '../model/form_data_dto.dart';
-import '../widgets/journal_details.dart';
+
+// Path to database info strings
+const DB_SCHEMA_PATH = 'assets/schema.txt';
+const DB_SELECT_PATH = 'assets/select.txt';
 
 class HomePage extends StatefulWidget {
 
@@ -16,9 +24,17 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+
+//////////////////////////////////////////////////////////////////////
+// Description: Displays list of journal entries, adaptive to device
+// orientation. Communicates with SQLite database.
+//////////////////////////////////////////////////////////////////////
 class _HomePageState extends State<HomePage> {
 
+  // List of FormData objects
   List<FormData> journalItems;
+
+  // Initialize dark mode
   bool darkMode = false;
 
   void initState() {
@@ -27,19 +43,20 @@ class _HomePageState extends State<HomePage> {
     loadDatabase();
   }
 
-  // Experimental
+  // Reload database when return from newEntryPage
   FutureOr onGoBack(dynamic value) {
     setState(() {
       loadDatabase();
     });
   }
 
-  void navigateSecondPage() {
+  // Route to new journal entry page
+  void newEntryPage() {
     Route route = MaterialPageRoute(builder: (context) => AddEntry());
     Navigator.push(context, route).then(onGoBack);
   }
-  // Experimental
 
+  // Set dark mode from shared preferences
   void initDarkMode() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState( () {
@@ -47,6 +64,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // Save dark mode to shared preferences
   void saveDarkMode(bool isDark) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (isDark) {
@@ -56,15 +74,15 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  // Load SQLite database
   void loadDatabase() async {
     final Database database = await openDatabase(
       'journal.db', version: 1, onCreate: (Database db, int version) async {
-        await db.execute(
-          'CREATE TABLE IF NOT EXISTS journal_entries(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, body TEXT, date TEXT, rating INT)');
+        await db.execute(DB_SCHEMA_PATH);
       }
     );
     // Generate list of map objects, for each row.  
-    List<Map> journalRecords = await database.rawQuery('SELECT * FROM journal_entries');
+    List<Map> journalRecords = await database.rawQuery(DB_SELECT_PATH);
 
     // Map the list to list of FormData objects
     List<FormData> journalEntries = journalRecords.map( (record) {
@@ -132,7 +150,7 @@ class _HomePageState extends State<HomePage> {
         body: JournalList(journalItems: journalItems),
         floatingActionButton: FloatingActionButton(
           //onPressed: () { Navigator.of(context).pushNamed(AddEntry.routeName);},
-          onPressed: () { navigateSecondPage(); },
+          onPressed: () { newEntryPage(); },
           tooltip: 'Add Entry',
           child: Icon(Icons.add),
         ),

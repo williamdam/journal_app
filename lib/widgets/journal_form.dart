@@ -1,3 +1,9 @@
+
+//////////////////////////////////////////////////////////////////////
+// Author: William Dam
+// Date: 03-01-2021
+// Description: Form widget for making new journal entry.
+//////////////////////////////////////////////////////////////////////
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';

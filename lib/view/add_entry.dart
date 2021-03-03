@@ -1,3 +1,8 @@
+//////////////////////////////////////////////////////////////////////
+// Author: William Dam
+// Date: 03-01-2021
+// Description: Page prompts for new journal entry
+//////////////////////////////////////////////////////////////////////
 import 'package:flutter/material.dart';
 import '../widgets/journal_form.dart';
 
@@ -9,6 +14,11 @@ class AddEntry extends StatefulWidget {
   _AddEntryState createState() => _AddEntryState();
 }
 
+
+//////////////////////////////////////////////////////////////////////
+// Description: Returns scaffold of view of journal entry form.
+// Calls JournalForm() to display form.
+//////////////////////////////////////////////////////////////////////
 class _AddEntryState extends State<AddEntry> {
 
   @override

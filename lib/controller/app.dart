@@ -1,7 +1,15 @@
+//////////////////////////////////////////////////////////////////////
+// Author: William Dam
+// Date: 03-01-2021
+// Description: App class is the controller for the entire application.
+//////////////////////////////////////////////////////////////////////
 import 'package:flutter/material.dart';
 import '../view/homepage.dart';
 import '../view/add_entry.dart';
 
+//////////////////////////////////////////////////////////////////////
+// Description: App class returns MaterialApp of entire application
+//////////////////////////////////////////////////////////////////////
 class App extends StatefulWidget {
 
   @override
@@ -10,14 +18,11 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
 
-  Brightness brightness;
-
+  // Navigation routes
   static final routes = {
     HomePage.routeName: (context) => HomePage(),
     AddEntry.routeName: (context) => AddEntry(),
   };
-
-  bool darkMode = false;
 
   void initState() {
     super.initState();
@@ -26,8 +31,9 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
 
+    // MaterialApp holds the entire program
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Journal App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,

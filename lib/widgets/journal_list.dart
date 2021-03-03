@@ -1,3 +1,10 @@
+
+//////////////////////////////////////////////////////////////////////
+// Author: William Dam
+// Date: 03-01-2021
+// Description: ListView widget shows all journal entries. OnTap shows
+// entry details.
+//////////////////////////////////////////////////////////////////////
 import 'package:flutter/material.dart';
 import 'package:journal_app/widgets/journal_details.dart';
 import '../model/form_data_dto.dart';
