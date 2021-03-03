@@ -17,15 +17,6 @@ class _AddEntryState extends State<AddEntry> {
       appBar: AppBar(
         title: Text('New Entry'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.white,
-            ), 
-            onPressed: () {  },
-          )
-        ],
       ),
       body: SafeArea(
         child: Padding(

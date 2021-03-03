@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../view/homepage.dart';
 import '../view/add_entry.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class App extends StatefulWidget {
 
@@ -22,15 +21,6 @@ class _AppState extends State<App> {
 
   void initState() {
     super.initState();
-    initDarkMode();
-  }
-
-  void initDarkMode() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState( () {
-      darkMode = prefs.getBool('darkMode') ?? false;
-    });
-    print('Dark mode at App init: $darkMode');
   }
 
   @override
@@ -41,7 +31,6 @@ class _AppState extends State<App> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          brightness: Brightness.light,
         ),
         routes: routes,
       );

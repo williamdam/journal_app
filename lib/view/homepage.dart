@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:journal_app/widgets/journal_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'add_entry.dart';
 import '../model/form_data_dto.dart';
-import 'view_details.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -87,7 +87,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (journalItems == null) {
       return MaterialApp(
       theme: darkMode ? _darkTheme : _lightTheme,
       title: 'Journal App',
@@ -128,80 +127,7 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () { Navigator.of(context).pushNamed(AddEntry.routeName); },
-          tooltip: 'Add Entry',
-          child: Icon(Icons.add),
-        ),
-      ),
-    ); 
-    }
-
-    else {
-      return MaterialApp(
-      theme: darkMode ? _darkTheme : _lightTheme,
-      title: 'Journal App',
-      home: Scaffold(
-        key: _key,
-        endDrawer: Drawer(
-          child: ListView(
-            children: [
-              SizedBox(
-                height: 80,
-                child: DrawerHeader(
-                  child: Text('Settings', style: TextStyle(fontSize: 20),)
-                ),
-              ),
-              SwitchListTile(
-                title: Text('Dark Mode'),
-                value: darkMode, 
-                onChanged: (state) {
-                  setState(() {
-                    darkMode = state;
-                  });
-                  saveDarkMode(state);
-                }
-              )
-            ],
-          ),
-        ),
-        appBar: AppBar(
-          title: Text('Journal Entries'),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.settings,
-                color: Colors.white,
-              ), 
-              onPressed: () { _key.currentState.openEndDrawer(); },
-            )
-          ],
-        ),
-        body: ListView.builder(
-          itemCount: journalItems.length,
-          itemBuilder: (context, i) {
-            return ListTile(
-              onTap: () { 
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => ViewDetails(
-                      title: journalItems[i].title, 
-                      body: journalItems[i].body, 
-                      date: journalItems[i].date,
-                    )
-                  )
-                ); 
-              },
-              title: Text('${journalItems[i].title}'),
-              subtitle: Text('${journalItems[i].date}'),
-            );
-          },
-        ),
+        body: JournalList(journalItems: journalItems,),
         floatingActionButton: FloatingActionButton(
           //onPressed: () { Navigator.of(context).pushNamed(AddEntry.routeName);},
           onPressed: () { navigateSecondPage(); },
@@ -210,9 +136,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-    }
-    
   }
 
-  
 }

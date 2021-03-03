@@ -113,6 +113,7 @@ class JournalForm extends StatelessWidget {
 
                     // Database will close automatically when app quits
                     //await database.close();
+
                     Navigator.of(context).pop(context);
                   }
                   
